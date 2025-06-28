@@ -57,6 +57,7 @@ The project is configured to deploy to:
 ```
 C:\Users\datgu\AppData\Local\Screeps\scripts\127_0_0_1___21025\default\
 ```
+This is a local Server Deployment. Change the path inside the package.json
 
 To deploy your bot:
 ```bash
