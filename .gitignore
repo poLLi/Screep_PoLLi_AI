@@ -9,6 +9,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnp.js
+.env
 
 .idea
 .DS_Store
+dist/main.js

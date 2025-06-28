@@ -6,7 +6,7 @@ A TypeScript-based development environment for Screeps bot development with auto
 
 - **TypeScript Support**: Full TypeScript development with Screeps type definitions
 - **Single File Output**: Bundles and minifies all code into a single `main.js` file
-- **Automatic Deployment**: One-command deployment to local Screeps server
+- **Automatic Deployment**: One-command deployment to local or official Screeps server
 - **Minification**: Production builds are minified for optimal performance
 
 ## Project Structure
@@ -50,16 +50,18 @@ The main bot code is located in `src/main.ts`. This file exports a `loop` functi
 - **`npm run build`**: Build and minify the project into `dist/main.js`
 - **`npm run dev`**: Build in development mode (unminified)
 - **`npm run deploy`**: Build and deploy to local Screeps server
-- 
+- **`npm run deploy-official`**: Build and deploy to official Screeps server
+- **`npm run watch`**: Build in development mode with file watching
 ### Deployment
 
-The project is configured to deploy to:
+#### Local Server Deployment
+
+The project is configured to deploy to a local Screeps server at:
 ```
 C:\Users\datgu\AppData\Local\Screeps\scripts\127_0_0_1___21025\default\
 ```
-This is a local Server Deployment. Change the path inside the package.json
 
-To deploy your bot:
+To deploy to your local server:
 ```bash
 npm run deploy
 ```
@@ -67,7 +69,39 @@ npm run deploy
 This will:
 1. Build the project in production mode
 2. Minify the output
-3. Copy `main.js` to the Screeps directory
+3. Copy `main.js` to the local Screeps directory
+
+*Note: Change the path in package.json if your local server uses a different directory.*
+
+#### Official Server Deployment
+
+To deploy to the official Screeps server (screeps.com), you need to set up your credentials first.
+
+**Setup:**
+1. Set environment variables with your Screeps account credentials:
+   ```bash
+   set SCREEPS_EMAIL=your-email@example.com
+   set SCREEPS_PASSWORD=your-password
+   set SCREEPS_BRANCH=default
+   ```
+
+2. Deploy to the official server:
+   ```bash
+   npm run deploy-official
+   ```
+
+**Alternative Setup (.env file):**
+You can also copy `.env.example` to `.env` and fill in your credentials. The deployment script will automatically load them:
+```bash
+copy .env.example .env
+# Edit .env with your actual credentials
+npm run deploy-official
+```
+
+This will:
+1. Build the project in production mode
+2. Authenticate with the Screeps API
+3. Upload your code to the specified branch on the official server
 
 ### TypeScript Configuration
 
@@ -93,6 +127,3 @@ The included bot has basic functionality:
 - **Harvester Creeps**: Spawns and manages harvester creeps
 - **Energy Collection**: Harvesters collect energy from sources
 - **Energy Distribution**: Harvesters transfer energy to spawns, extensions, and towers
-
-
-
